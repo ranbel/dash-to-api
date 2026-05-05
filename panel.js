@@ -81,6 +81,15 @@ function generateAPIRequestComponent(req) {
   path = path.replace(/\/accounts\/[a-f0-9]{32}/, '/accounts/{account_id}');
   path = path.replace(/\/zones\/[a-f0-9]{32}/, '/zones/{zone_id}');
 
+  // Replace remaining UUIDs and 32-char hex IDs with named placeholders
+  // derived from the preceding path segment
+  const idPattern = /\/([a-z][a-z0-9_-]*)\/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-f0-9]{32})(?=\/|$)/gi;
+  path = path.replace(idPattern, (match, segment, id) => {
+    if (segment.startsWith('{')) return match;
+    const name = singularize(segment).replace(/-/g, '_');
+    return `/${segment}/{${name}_id}`;
+  });
+
   let lines = [`<APIRequest`];
   lines.push(`  path="${path}"`);
   lines.push(`  method="${req.method}"`);
@@ -109,6 +118,24 @@ function generateAPIRequestComponent(req) {
 
   lines.push(`/>`);
   return lines.join('\n');
+}
+
+/**
+ * Naive singularization for path segments.
+ * Handles common English plural patterns found in API paths.
+ */
+function singularize(word) {
+  if (word.endsWith('ies') && word.length > 3) {
+    return word.slice(0, -3) + 'y';       // policies -> policy, entries -> entry
+  }
+  if (word.endsWith('ses') || word.endsWith('xes') || word.endsWith('zes') ||
+      word.endsWith('shes') || word.endsWith('ches')) {
+    return word.slice(0, -2);              // addresses -> address, boxes -> box
+  }
+  if (word.endsWith('s') && !word.endsWith('ss')) {
+    return word.slice(0, -1);              // rules -> rule, devices -> device
+  }
+  return word;                             // policy, staff (no change)
 }
 
 async function copyToClipboard(text) {
