@@ -1,0 +1,13 @@
+{
+  "name": "Cloudflare API Filter",
+  "description": "Filters and formats Cloudflare API requests",
+  "version": "1.0",
+  "manifest_version": 3,
+  "devtools_page": "devtools.html",
+  "permissions": [],
+  "icons": {
+    "16": "logomark.png",
+    "48": "logomark.png",
+    "128": "logomark.png"
+}
+}
