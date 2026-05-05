@@ -47,7 +47,7 @@ macOS flags downloaded apps as untrusted. To remove the quarantine flag:
    ```sh
    sudo xattr -cr /path/to/chrome-mac-arm64/Google\ Chrome\ for\ Testing.app
    ```
-4. Press Enter and provide your password.
+4. Press **Enter and provide your password.
 
 After that, open `Google Chrome for Testing.app` from the unzipped folder.
 
@@ -58,13 +58,12 @@ After that, open `Google Chrome for Testing.app` from the unzipped folder.
 3. Turn on **Developer mode** (top right).
 4. Select **Load unpacked** and select this directory.
 
-## Updating the extension
+## Update the extension
 
-After pulling or making changes to the repo locally:
-
-1. Go to `chrome://extensions/` in Chrome for Testing.
-2. Select the reload icon on the **Cloudflare API Filter** card.
-3. Reopen DevTools if it was already open.
+1. Pull the latest changes from remote or make changes to the repo locally.
+2. Go to `chrome://extensions/` in Chrome for Testing.
+3. Select the reload icon on the **Cloudflare API Filter** card.
+4. If DevTools was already open, close the DevTools panel and reopen it to load the updated extension.
 
 ## Usage
 
@@ -73,14 +72,3 @@ After pulling or making changes to the repo locally:
 3. Select `>>` to show all tabs, then select the **Cloudflare API Filter** tab.
 4. Navigate to the [Cloudflare dashboard](https://dash.cloudflare.com/). Requests appear in the panel as they happen.
 5. Select **Copy as APIRequest** to copy the formatted component to your clipboard.
-
-## Files
-
-```
-manifest.json    Chrome extension manifest (Manifest V3)
-devtools.html    Entry point that loads the DevTools panel
-devtools.js      Registers the panel tab
-panel.html       Panel UI with styling
-panel.js         Request interception, formatting, and copy logic
-logomark.png     Extension icon
-```
