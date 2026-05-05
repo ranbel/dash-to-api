@@ -1,6 +1,6 @@
 # dash-to-api
 
-A Chrome DevTools extension that intercepts Cloudflare dashboard API requests and converts them into `<APIRequest />` component snippets for use in Cloudflare developer documentation.
+A Chrome DevTools extension that intercepts Cloudflare dashboard API requests and converts them into [`<APIRequest />` component](https://developers.cloudflare.com/style-guide/components/api-request/) snippets for use in Cloudflare developer documentation.
 
 ## What it does
 
