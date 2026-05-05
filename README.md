@@ -33,6 +33,7 @@ Corporate-managed Chrome instances block custom extensions. To load this extensi
 2. Find the **Stable** channel row and copy the download URL for your OS.
 3. Paste the URL into a browser tab to start the download.
 4. Unzip the downloaded folder.
+5. Open `Google Chrome for Testing.app` from the unzipped folder.
 
 ### macOS: trust the app
 
@@ -47,7 +48,7 @@ macOS flags downloaded apps as untrusted. To remove the quarantine flag:
    ```sh
    sudo xattr -cr /path/to/chrome-mac-arm64/Google\ Chrome\ for\ Testing.app
    ```
-4. Press **Enter and provide your password.
+4. Press **Enter** and provide your password.
 
 After that, open `Google Chrome for Testing.app` from the unzipped folder.
 
